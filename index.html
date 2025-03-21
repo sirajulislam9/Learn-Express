@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <title>Express JS</title>
+</head>
+<body>
+    <div class="body-section">
+        <div class="container hero">
+            <div class="shadow-lg p-4">
+                <h1 class="text-white">7 most expensive cars in the world in 2025</h1>
+                <p class="p-2 border rounded fit-width text-white">21 March 2025</p>
+            </div>
+        </div>
+        <div class="container py-4">
+            <h2 class="py-2"> Key Highlights</h2>
+            <div class="features">
+                <p class="has-dropcap"> 1 These cars offer more than price, blending design,innovation, and performance</p>
+                <p class="has-dropcap"> 2 Custom-made or limited edition, taillored with features for the buyer</p>
+                <p class="has-dropcap"> 3 Luxury meets cutting-edge tech, delivering both power and advanced capabilities</p>
+            </div>
+        </div>
+        <div class="container">
+            <h2 class="text-center py-4"> List of top 7 most expensive cars in the world in 2025 </h2>
+            <table class="table table-striped table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col"> No. </th>
+                        <th scope="col"> Car Name </th>
+                        <th scope="col"> Origin </th>
+                        <th scope="col"> Price </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                </tbody>
+            </table>   
+        </div>
+        <div class="container car-details">
+    
+        </div>
+    </div>
+    <footer class="bg-light w-full mx-auto py-4 px-5 d-flex justify-content-between align-items-start" >
+        <div>
+            <div>
+                <h4 class="text-black-500"> Social Links</h4>
+                <ul class="list-unstyled">
+                    <li> <a class="text-nickel" href="https://www.facebook.com"> Facebook </a> </li>
+                    <li> <a class="text-nickel" href="https://www.twitter.com"> Twitter </a> </li>
+                    <li> <a class="text-nickel" href="https://www.instagram.com"> Instagram </a> </li>
+            </ul>
+            </div>
+            <div>
+                <h4 class="text-black
+                    -500"> Experience CARS App On Mobile
+                </h4>
+                <img src="https://www.cars24.com/article/_next/image/?url=https%3A%2F%2Fcdn.24c.in%2Fprod%2Fauto-news24-cms%2FDownload-link---footer%2F2024%2F06%2F03%2Ffb9ea833-28c9-41d4-ad32-fdf95124253d-ac715cb2-50d2-4c28-9deb-1aff8782df38-android_app_1679302864.webp&w=256&q=75" alt="">
+            </div>
+        </div>
+        <div>
+            <h4 class="text-black-500"> Useful Links</h4>
+            <ul class="list-unstyled">
+                <li> <a class="text-nickel" href="https://www.wikipedia.org"> Wikipedia </a> </li>
+                <li> <a class="text-nickel" href="https://www.google.com"> Google </a> </li>
+                <li> <a class="text-nickel" href="https://www.yahoo.com"> Yahoo </a> </li>
+        </div>
+        <div>
+            <h4 class="text-black-500"> Other Geographies</h4>
+            <ul class="list-unstyled">
+                <li> <a class="text-nickel" href="https://www.wikipedia.org"> USA </a> </li>
+                <li> <a class="text-nickel" href="https://www.google.com"> UK </a> </li>
+        </div>
+    </footer>
+
+    <script>
+        fetch('http://localhost:3000/cars')
+            .then(response => response.json())
+            .then(data => {
+                data.forEach(car => {
+                    const row = document.createElement('tr');
+                    const carDetails = document.createElement('div');
+                    row.innerHTML = `
+                        <th scope="row"> ${car.id} </th>
+                        <td> ${car.name} </td>
+                        <td> ${car.origin} </td>
+                        <td> ${car.price} </td>
+                    `;
+                    carDetails.innerHTML = `
+                        <div class="pt-4">
+                            <h2> ${car.id}. ${car.name} ${car.model} |  ${car.price}</h2>
+                            <img src="${car.image}" alt="${car.name}" class="img-fluid img-height rounded">
+                            <p class="pt-4"> ${car.details} </p>
+                            <h5 class="py-4"> Key Specifications: ${car.name} ${car.model} </h5>
+                        </div>
+
+                        <div>
+                            <table class="table table-striped">
+                                <tbody>
+                                    <tr>
+                                        <th scope="row" class="th-weight">  Engine Configuration</th>
+                                        <td> ${car.specifications.EngineConfiguration} </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="th-weight">  Transmission</th>
+                                        <td> ${car.specifications.Transmission} </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="th-weight">  Maximum Power</th>
+                                        <td> ${car.specifications.Power} </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="th-weight">  Top Speed</th>
+                                        <td> ${car.specifications.topSpeed} </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="th-weight">  Acceleartion</th>
+                                        <td> ${car.specifications.acceleration} </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div>
+                            <h5 class="py-2"> Key Features: </h5>
+                            <p>  <span class="fw-bold"> Exterior: </span> ${car.features.Exterior} </p>
+                            <p>  <span class="fw-bold"> Interior: </span> ${car.features.Interior} </p>
+                        </div>
+                        
+                    `;
+                    document.querySelector('tbody').appendChild(row);
+                    document.querySelector('.car-details').appendChild(carDetails);
+                    
+                }         
+            );
+                
+            });
+    </script>
+</body>
+</html>
