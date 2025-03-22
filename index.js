@@ -159,6 +159,13 @@ app.get('/cars', (req, res) => {
   res.send(cars);
 });
 
+app.post('/addCars', (req, res) => {
+  const car = req.body;
+  cars.push(car);
+  res.send(car);
+});
+
+
 app.get('/cars/:id', (req,res) =>{
   const id = req.params.id;
   const car = cars[id];
